@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime
+from ai_routes import router as ai_router
 from typing import List, Dict, Any
 
 from email_collector import refresh_email_alerts
@@ -129,8 +130,12 @@ def get_nodes():
     nodes = build_nodes(alerts)
     return nodes
 
+app.include_router(ai_router)
+
+
 
 @app.get("/alerts")
 def get_alerts(limit: int = 50):
     alerts = refresh_email_alerts(limit=limit)
     return alerts
+
