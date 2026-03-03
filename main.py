@@ -131,6 +131,6 @@ def get_nodes():
 
 
 @app.get("/alerts")
-def get_alerts():
-    alerts = refresh_email_alerts(limit=50)
+def get_alerts(limit: int = 50):
+    alerts = refresh_email_alerts(limit=limit)
     return alerts
