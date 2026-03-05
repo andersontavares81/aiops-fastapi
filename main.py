@@ -130,7 +130,10 @@ def get_nodes():
     nodes = build_nodes(alerts)
     return nodes
 
-app.include_router(ai_router)
+@app.get("/ai_router")
+def get_ai_router():
+    ai_router = include_ai_routers()
+    return ai_router
 
 
 
@@ -138,4 +141,5 @@ app.include_router(ai_router)
 def get_alerts(limit: int = 50):
     alerts = refresh_email_alerts(limit=limit)
     return alerts
+
 
