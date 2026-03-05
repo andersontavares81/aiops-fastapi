@@ -17,6 +17,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(ai_router)               # <-- esta linha
 
 def build_dashboard(alerts: List[Dict[str, Any]]) -> Dict[str, Any]:
     """
@@ -141,5 +142,6 @@ def get_ai_router():
 def get_alerts(limit: int = 50):
     alerts = refresh_email_alerts(limit=limit)
     return alerts
+
 
 
